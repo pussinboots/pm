@@ -1,6 +1,29 @@
 'use strict';
-
-function ProjectController($scope) {
+function GithubController($scope, $http) {
+	 $http({method: 'GET', url: "https://raw.githubusercontent.com/"+$scope.$parent.projects.repo+"/"+$scope.$parent.project.name+"/master/.travis.yml"}).
+    success(function(data, status, headers, config) {
+      $scope.content=data;
+    }).
+    error(function(data, status, headers, config) {
+	console.log('error')
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
+    });
+}
+function ProjectController($scope, $timeout) {
+	$scope.interval = 20000
+	$scope.reloadpic =function()
+        {
+         var timestamp = new Date().getTime();
+	 var interval = $scope.interval
+         $scope.rand = timestamp;
+	 console.log("reload build")
+	 if (interval<1000) {
+		interval=1000
+	 }
+         $timeout($scope.reloadpic, interval);
+        }
+	$scope.reloadpic()
 	$scope.projects={repo:'pussinboots', 
 		projects:[{name:'angularjs-crypto', deployment:{type:'heroku'}, language:'javascript'},
 			  {name:'angularjs-interpolate-interceptor', deployment:{type:'heroku', app:'angularjs-ii'}, 					language:'javascript'},
