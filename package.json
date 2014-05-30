@@ -3,21 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "connect": "^3.0.0",
-    "serve-static": "^1.2.0",
-    "karma": "^0.12.16",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-cli": "0.0.4",
-    "karma-coverage": "^0.2.4",
-    "karma-coveralls": "^0.1.4",
-    "karma-firefox-launcher": "~0.1",
-    "karma-jasmine": "^0.1.5",
-    "karma-junit-reporter": "^0.2.2",
-    "karma-ng-scenario": "~0.1",
-    "karma-opera-launcher": "~0.1",
-    "karma-phantomjs-launcher": "~0.1",
-    "karma-sauce-launcher": "^0.2.8",
-    "karma-script-launcher": "~0.1",
-    "karma-threshold-reporter": "~0.1.6"
+    "serve-static": "^1.2.0"
   },
   "engines": {
     "node": "0.10.x"
