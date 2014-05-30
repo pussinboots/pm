@@ -1,0 +1,45 @@
+Projects
+<div ng-repeat="project in projects.projects">
+	<h1>
+		<a ng-href="https://github.com/{{projects.repo}}/{{project.name}}">
+			{{project.name}}
+		</a>
+	</h1>
+	<p>
+		<a ng-href="https://travis-ci.org/{{projects.repo}}/{{project.name}}">
+			<img ng-src="https://travis-ci.org/{{projects.repo}}/{{project.name}}.svg?branch=master" style="max-width:100%;">
+		</a>
+		<a ng-href="https://coveralls.io/r/{{projects.repo}}/{{project.name}}?branch=master">
+			<img ng-src="https://img.shields.io/coveralls/{{projects.repo}}/{{project.name}}.svg" style="max-width:100%;">
+		</a>
+		<a ng-href="https://david-dm.org/{{projects.repo}}/{{project.name}}">
+			<img ng-src="https://david-dm.org/{{projects.repo}}/{{project.name}}.png" style="max-width:100%;">
+		</a>
+		<a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com">
+			<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}" alt="heroku failed" style="max-width:100%;">
+		</a>
+	</p>
+	<div>
+		<p>
+			MarkDown
+		</p>
+		<pre>
+[![Build Status](https://travis-ci.org/{{projects.repo}}/{{project.name}}.svg?branch=master)](https://travis-ci.org/{{projects.repo}}/{{project.name}})
+[![Coverage Status](https://img.shields.io/coveralls/{{projects.repo}}/{{project.name}}.svg)](https://coveralls.io/r/{{projects.repo}}/{{project.name}}?branch=master)
+[![Dependencies](https://david-dm.org/{{projects.repo}}/{{project.name}}.png)](https://david-dm.org/{{projects.repo}}/{{project.name}})
+[![Heroku](http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}})](https://{{project.deployment.app||project.name}}.herokuapp.com)
+		</pre>
+	</div>
+</div>
+
+<div ng-repeat="tool in tools">
+	<h1>
+		<a ng-href="{{tool.link}}">{{tool.name}}</a>
+	</h1>
+	<p>
+		<div>{{tool.description}}</div>
+		<div>{{tool.type}}</div>
+		<div>{{tool.language}}</div>
+	</p>
+</div>
+
