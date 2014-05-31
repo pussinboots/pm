@@ -1,0 +1,32 @@
+Repo <input type="text" ng-model="repo" /> <button ng-click="load()">load</button>
+
+<div ng-repeat="travi in travis">
+	<p>
+	{{travi.slug}}
+	</p>
+	<p>
+	{{travi.description}}
+	</p>
+	<p>
+		<button ng-click="builds(travi)">builds</button>
+		{{travi.builds}}
+	</p>
+	<p>
+		<button ng-click="readme(travi)">readme</button>
+		<pre>		
+{{travi.readme}}
+		</pre>
+	</p>
+	<p>
+		<button ng-click="travisyml(travi)">travis.yml</button>
+		<pre>
+{{travi.travisyml}}
+		</pre>
+	</p>
+	<p>
+		<button ng-click="commits(travi)">commits</button>
+		<div ng-repeat="commit in travi.commits">
+			{{commit.commit.message}} 			{{commit.commit.author.date}} 
+		</div>
+	</p>
+</div>
