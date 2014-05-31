@@ -31,8 +31,7 @@ function TravisController($scope, Travis, TravisBuilds, GitHub) {
 		})
 	}
 	$scope.checkHeroku = function(travi) {
-			$scope.travisyml(travi)
-			return false
+			return travi.description.indexOf('heroku')>=0
 	}
 	$scope.travisyml = function(travi) {
 			var res = travi.slug.split("/");

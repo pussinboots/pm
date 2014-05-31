@@ -15,7 +15,7 @@ Repo <input type="text" ng-model="repo" /> <button ng-click="load()">load</butto
 		<a ng-href="https://david-dm.org/{{travi.slug}}" target="_blank">
 			<img ng-src="https://david-dm.org/{{travi.slug}}.png?{{rand}}" style="max-width:100%;">
 		</a>
-		<a ng-show="travi.description.indexOf('heroku')>=0" ng-href="https://{{travi.slug.split('/')[1]}}.herokuapp.com" target="_blank">
+		<a ng-show="checkHeroku(travi)" ng-href="https://{{travi.slug.split('/')[1]}}.herokuapp.com" target="_blank">
 			<img ng-src="http://heroku-badge.heroku.com/?app={{travi.slug.split('/')[1]}}&{{rand}}" alt="heroku" style="max-width:100%;">
 		</a>
 		<a ng-href="https://gitter.im/{{travi.slug}}" target="_blank">
