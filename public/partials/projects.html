@@ -2,21 +2,21 @@
 Refresh timeout in mili seconds (min 1000)<input type="text" ng-model="interval" />
 <div ng-repeat="project in projects.projects">
 	<h1>
-		<a ng-href="https://github.com/{{projects.repo}}/{{project.name}}">
+		<a ng-href="https://github.com/{{projects.repo}}/{{project.name}}" target="_blank">
 			{{project.name}}
 		</a>
 	</h1>
 	<p>
-		<a ng-href="https://travis-ci.org/{{projects.repo}}/{{project.name}}">
+		<a ng-href="https://travis-ci.org/{{projects.repo}}/{{project.name}}" target="_blank">
 			<img ng-src="https://travis-ci.org/{{projects.repo}}/{{project.name}}.svg?branch=master&{{rand}}" style="max-width:100%;">
 		</a>
-		<a ng-href="https://coveralls.io/r/{{projects.repo}}/{{project.name}}?branch=master">
+		<a ng-href="https://coveralls.io/r/{{projects.repo}}/{{project.name}}?branch=master" target="_blank">
 			<img ng-src="https://coveralls.io/repos/{{projects.repo}}/{{project.name}}/badge.png?branch=master&{{rand}}" style="max-width:100%;">
 		</a>
-		<a ng-href="https://david-dm.org/{{projects.repo}}/{{project.name}}">
+		<a ng-href="https://david-dm.org/{{projects.repo}}/{{project.name}}" target="_blank">
 			<img ng-src="https://david-dm.org/{{projects.repo}}/{{project.name}}.png?{{rand}}" style="max-width:100%;">
 		</a>
-		<a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com">
+		<a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com" target="_blank">
 			<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}&{{rand}}" alt="heroku failed" style="max-width:100%;">
 		</a>
 	</p>
