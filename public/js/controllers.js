@@ -10,6 +10,38 @@ function GithubController($scope, $http) {
       // or server returns response with an error status.
     });
 }
+function TravisController($scope, Travis, TravisBuilds, GitHub) {
+	$scope.repo='pussinboots'
+	$scope.load = function() {
+		$scope.travis=Travis.get({repo:$scope.repo})
+	}
+	$scope.builds = function(travi) {
+		travi.builds=TravisBuilds.get({slug:travi.slug})
+	}
+	$scope.readme = function(travi) {
+			var res = travi.slug.split("/");
+			GitHub.get({repo:res[0], project:res[1]}, function(data){
+			travi.readme=atob(data.content)
+		})
+	}
+	$scope.readme = function(travi) {
+			var res = travi.slug.split("/");
+			GitHub.get({repo:res[0], project:res[1], file:'README.md'}, function(data){
+			travi.readme=atob(data.content)
+		})
+	}
+	$scope.checkHeroku = function(travi) {
+			$scope.travisyml(travi)
+			return false
+	}
+	$scope.travisyml = function(travi) {
+			var res = travi.slug.split("/");
+			GitHub.get({repo:res[0], project:res[1], file:'.travis.yml'}, function(data){
+			travi.travisyml=atob(data.content)
+		})
+	}
+	$scope.load()
+}
 function ProjectController($scope, $timeout) {
 	$scope.interval = 20000
 	$scope.reloadpic =function()

@@ -1,0 +1,42 @@
+Repo <input type="text" ng-model="repo" /> <button ng-click="load()">load</button>
+<div ng-repeat="travi in travis">
+	<h1>
+		<a ng-href="https://github.com/{{travi.slug}}" target="_blank">
+			{{travi.slug}}
+		</a>
+	</h1>
+	<p>
+		<a ng-href="https://travis-ci.org/{{travi.slug}}" target="_blank">
+			<img ng-src="https://travis-ci.org/{{travi.slug}}.svg?branch=master&{{rand}}" style="max-width:100%;">
+		</a>
+		<a ng-href="https://coveralls.io/r/{{travi.slug}}?branch=master" target="_blank">
+			<img ng-src="https://coveralls.io/repos/{{travi.slug}}/badge.png?branch=master&{{rand}}" style="max-width:100%;">
+		</a>
+		<a ng-href="https://david-dm.org/{{travi.slug}}" target="_blank">
+			<img ng-src="https://david-dm.org/{{travi.slug}}.png?{{rand}}" style="max-width:100%;">
+		</a>
+		<a ng-show="travi.description.indexOf('heroku')>=0" ng-href="https://{{travi.slug.split('/')[1]}}.herokuapp.com" target="_blank">
+			<img ng-src="http://heroku-badge.heroku.com/?app={{travi.slug.split('/')[1]}}&{{rand}}" alt="heroku" style="max-width:100%;">
+		</a>
+		<a ng-href="https://gitter.im/{{travi.slug}}" target="_blank">
+			<img ng-src="https://badges.gitter.im/{{travi.slug}}.png" alt="gitter" style="max-width:100%;">
+		</a>
+	</p>
+	{{travi.description}}
+	<p>
+		<button ng-click="builds(travi)">builds</button>
+		{{travi.builds}}
+	</p>
+	<p>
+		<button ng-click="readme(travi)">readme</button>
+		<pre>		
+{{travi.readme}}
+		</pre>
+	</p>
+	<p>
+		<button ng-click="travisyml(travi)">travis.yml</button>
+		<pre>
+{{travi.travisyml}}
+		</pre>
+	</p>
+</div>
