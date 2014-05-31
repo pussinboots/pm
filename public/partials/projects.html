@@ -17,7 +17,10 @@ Refresh timeout in mili seconds (min 1000)<input type="text" ng-model="interval"
 			<img ng-src="https://david-dm.org/{{projects.repo}}/{{project.name}}.png?{{rand}}" style="max-width:100%;">
 		</a>
 		<a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com" target="_blank">
-			<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}&{{rand}}" alt="heroku failed" style="max-width:100%;">
+			<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}&{{rand}}" alt="heroku" style="max-width:100%;">
+		</a>
+		<a ng-href="https://gitter.im/{{projects.repo}}/{{project.name}}" target="_blank">
+			<img src="https://badges.gitter.im/{{projects.repo}}/{{project.name}}.png" alt="gitter" style="max-width:100%;">
 		</a>
 	</p>
 	<div>
@@ -49,6 +52,9 @@ Refresh timeout in mili seconds (min 1000)<input type="text" ng-model="interval"
 </a>
 <a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com">
 	<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}&{{rand}}" alt="heroku failed" style="max-width:100%;">
+</a>
+<a ng-href="https://gitter.im/{{projects.repo}}/{{project.name}}" target="_blank">
+	<img src="https://badges.gitter.im/{{projects.repo}}/{{project.name}}.png" alt="gitter" style="max-width:100%;">
 </a>
 </textarea>
 		</pre>
