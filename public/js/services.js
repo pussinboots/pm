@@ -16,6 +16,12 @@ angular.module('services', ['ngResource'], function ($provide) {
         });
     });
 
+    $provide.factory('GitHubCommits', function ($resource) {
+        return $resource('https://api.github.com/repos/:repo/:project/commits', {}, {
+            get: {method: 'GET', isArray:true}
+        });
+    });
+
     $provide.factory('GitHub', function ($resource) {
         return $resource('https://api.github.com/repos/:repo/:project/contents/:file', {}, {
             get: {method: 'GET'}

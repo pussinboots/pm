@@ -39,4 +39,10 @@ Repo <input type="text" ng-model="repo" /> <button ng-click="load()">load</butto
 {{travi.travisyml}}
 		</pre>
 	</p>
+	<p>
+		<button ng-click="commits(travi)">commits</button>
+		<div ng-repeat="commit in travi.commits">
+			{{commit.commit.message}} 			{{commit.commit.author.date}} 
+		</div>
+	</p>
 </div>

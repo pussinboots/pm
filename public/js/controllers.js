@@ -10,7 +10,7 @@ function GithubController($scope, $http) {
       // or server returns response with an error status.
     });
 }
-function TravisController($scope, Travis, TravisBuilds, GitHub) {
+function TravisController($scope, Travis, TravisBuilds, GitHub, GitHubCommits) {
 	$scope.repo='pussinboots'
 	$scope.load = function() {
 		$scope.travis=Travis.get({repo:$scope.repo})
@@ -19,14 +19,14 @@ function TravisController($scope, Travis, TravisBuilds, GitHub) {
 		travi.builds=TravisBuilds.get({slug:travi.slug})
 	}
 	$scope.readme = function(travi) {
-			var res = travi.slug.split("/");
-			GitHub.get({repo:res[0], project:res[1]}, function(data){
+		var res = travi.slug.split("/");
+		GitHub.get({repo:res[0], project:res[1]}, function(data){
 			travi.readme=atob(data.content)
 		})
 	}
 	$scope.readme = function(travi) {
-			var res = travi.slug.split("/");
-			GitHub.get({repo:res[0], project:res[1], file:'README.md'}, function(data){
+		var res = travi.slug.split("/");
+		GitHub.get({repo:res[0], project:res[1], file:'README.md'}, function(data){
 			travi.readme=atob(data.content)
 		})
 	}
@@ -34,10 +34,14 @@ function TravisController($scope, Travis, TravisBuilds, GitHub) {
 			return travi.description.indexOf('heroku')>=0
 	}
 	$scope.travisyml = function(travi) {
-			var res = travi.slug.split("/");
-			GitHub.get({repo:res[0], project:res[1], file:'.travis.yml'}, function(data){
+		var res = travi.slug.split("/");
+		GitHub.get({repo:res[0], project:res[1], file:'.travis.yml'}, function(data){
 			travi.travisyml=atob(data.content)
 		})
+	}
+	$scope.commits = function(travi) {
+		var res = travi.slug.split("/");
+		travi.commits=GitHubCommits.get({repo:res[0], project:res[1]})
 	}
 	$scope.load()
 }
