@@ -27,12 +27,14 @@ New Project
 			MarkDown
 		</p>
 		<pre>
+			<code>
 ##{{project.name}}
 
 [![Build Status](https://travis-ci.org/{{project.repo}}/{{project.name}}.svg?branch=master)](https://travis-ci.org/{{project.repo}}/{{project.name}})
 [![Coverage Status](https://img.shields.io/coveralls/{{project.repo}}/{{project.name}}.svg)](https://coveralls.io/r/{{project.repo}}/{{project.name}}?branch=master)
 [![Dependencies](https://david-dm.org/{{project.repo}}/{{project.name}}.png)](https://david-dm.org/{{project.repo}}/{{project.name}})
 [![Heroku](http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}})](https://{{project.deployment.app||project.name}}.herokuapp.com)
+			</code>
 		</pre>
 	</div>
 	<div>
@@ -59,7 +61,24 @@ travis encrypt $(heroku auth:token) --add deploy.api_key
 git init
 git add .
 git commit -am "first commit"
-git remote add origin git@github.com:{{project.repo}}/{{project.name}].git
+git remote add origin git@github.com:{{project.repo}}/{{project.name}}.git
+git push -u origin master
+		</pre>
+	</div>
+        <div>
+		<p>
+			Bash
+		</p>
+		<pre>
+rm -rfv .git
+heroku create {{project.name}}
+git init
+git add .
+git commit -am "first commit"
+git remote add origin git@github.com:{{project.repo}}/{{project.name}}.git
+travis login
+travis enable
+travis encrypt $(heroku auth:token) --add deploy.api_key
 git push -u origin master
 		</pre>
 	</div>

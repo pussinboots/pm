@@ -1,0 +1,24 @@
+{
+  "name": "project-manager",
+  "version": "0.0.1",
+  "homepage": "https://github.com/pussinboots/pm",
+  "authors": [
+    "pussinboots <pussinboots666@googlemail.com>"
+  ],
+  "main": "server.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "oauth-ng": "~0.2.0-beta.1"
+  }
+}
