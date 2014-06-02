@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-var demoApp = angular.module('demoApp', ['services', 'DataTable']);
+var demoApp = angular.module('demoApp', ['services', 'DataTable', 'ngRoute', 'oauth']);
 
 demoApp.config(function ($routeProvider) {
     $routeProvider
