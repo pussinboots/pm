@@ -18,8 +18,14 @@ New Project
 		<a ng-href="https://david-dm.org/{{project.repo}}/{{project.name}}">
 			<img ng-src="https://david-dm.org/{{project.repo}}/{{project.name}}.png" style="max-width:100%;">
 		</a>
-		<a ng-show="project.deployment.type=='heroku'" ng-href="https://{{project.deployment.app||project.name}}.herokuapp.com">
-			<img src="http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}}" alt="heroku failed" style="max-width:100%;">
+		<a ng-href="https://sourcegraph.com/github.com/{{project.repo}}/{{project.name}}" target="_blank">
+		        <img ng-src="https://sourcegraph.com/api/repos/github.com/{{project.repo}}/{{project.name}}/badges/status.png" alt="status" />
+		</a>
+		<a ng-href="https://{{travi.slug.split('/')[1]}}.herokuapp.com" target="_blank">
+			<img ng-src="http://heroku-badge.heroku.com/?app={{project.name}}&{{rand}}" alt="heroku" style="max-width:100%;" />
+		</a>
+		<a ng-href="https://gitter.im/{{project.repo}}/{{project.name}}" target="_blank">
+			<img ng-src="https://badges.gitter.im/{{project.repo}}/{{project.name}}.png" alt="gitter" style="max-width:100%;" />
 		</a>
 	</p>
 	<div>
@@ -33,7 +39,9 @@ New Project
 [![Build Status](https://travis-ci.org/{{project.repo}}/{{project.name}}.svg?branch=master)](https://travis-ci.org/{{project.repo}}/{{project.name}})
 [![Coverage Status](https://img.shields.io/coveralls/{{project.repo}}/{{project.name}}.svg)](https://coveralls.io/r/{{project.repo}}/{{project.name}}?branch=master)
 [![Dependencies](https://david-dm.org/{{project.repo}}/{{project.name}}.png)](https://david-dm.org/{{project.repo}}/{{project.name}})
+[![status](https://sourcegraph.com/api/repos/github.com/{{project.repo}}/{{project.name}}/badges/status.png)](https://sourcegraph.com/github.com/{{project.repo}}/{{project.name}})
 [![Heroku](http://heroku-badge.heroku.com/?app={{project.deployment.app||project.name}})](https://{{project.deployment.app||project.name}}.herokuapp.com)
+[![Gitter chat](https://badges.gitter.im/{{project.repo}}/{{project.name}}.png)](https://gitter.im/{{project.repo}}/{{project.name}})
 			</code>
 		</pre>
 	</div>
@@ -71,6 +79,7 @@ git push -u origin master
 		</p>
 		<pre>
 rm -rfv .git
+heroku login
 heroku create {{project.name}}
 git init
 git add .
@@ -79,6 +88,7 @@ git remote add origin git@github.com:{{project.repo}}/{{project.name}}.git
 travis login
 travis enable
 travis encrypt $(heroku auth:token) --add deploy.api_key
+git commit -am "first commit"
 git push -u origin master
 		</pre>
 	</div>

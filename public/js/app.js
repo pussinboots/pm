@@ -1,7 +1,7 @@
 'use strict';
 
 /* App Module */
-var demoApp = angular.module('demoApp', ['services', 'DataTable', 'ngRoute', 'oauth']);
+var demoApp = angular.module('demoApp', ['services', 'DataTable', 'ngRoute', 'oauth', 'ngClipboard']);
 
 demoApp.config(function ($routeProvider) {
     $routeProvider
@@ -11,3 +11,5 @@ demoApp.config(function ($routeProvider) {
 	.when('/new', { templateUrl: 'partials/new-project.html', controller: ProjectController})
         .otherwise({ redirectTo: '/travis' });
 });
+
+

@@ -25,6 +25,7 @@
     "angular-cookies": "~1.2.16",
     "angular-resource": "~1.2.16",
     "angular-route": "~1.2.16",
-    "prettify": "*"
+    "prettify": "*",
+    "ng-clip": "~0.1.3"
   }
 }

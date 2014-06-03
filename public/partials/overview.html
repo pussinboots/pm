@@ -1,31 +1,39 @@
 Repo <input type="text" ng-model="repo" /> <button ng-click="load()">load</button>
+<br />
+Reload interval (in milli) <input type="text" ng-model="interval" />
 <div class="table-responsive" ng-controller="TableCtrl">
     <test-data>
         <li class="row" table-row" ng-repeat="travi in travis">
             <span><a ng-href="https://github.com/{{travi.slug}}" target="_blank">{{travi.slug}}</a></span>
             <span>
+		<!--<button type="button" clip-copy="getTextToCopy()" clip-click="doSomething()">clone</button>-->
 		<a ng-href="https://travis-ci.org/{{travi.slug}}" target="_blank">
-			<img ng-src="https://travis-ci.org/{{travi.slug}}.svg?branch=master&{{rand}}" style="max-width:100%;">
+			<img ng-src="https://travis-ci.org/{{travi.slug}}.svg?branch=master&{{rand}}" style="max-width:100%;" />
 		</a>
 	    </span>
 	    <span>
 		<a ng-href="https://coveralls.io/r/{{travi.slug}}?branch=master" target="_blank">
-			<img ng-src="https://coveralls.io/repos/{{travi.slug}}/badge.png?branch=master&{{rand}}" style="max-width:100%;">
+			<img ng-src="https://coveralls.io/repos/{{travi.slug}}/badge.png?branch=master&{{rand}}" style="max-width:100%;" />
 		</a>
 	    </span>
 	    <span>
 		<a ng-href="https://david-dm.org/{{travi.slug}}" target="_blank">
-			<img ng-src="https://david-dm.org/{{travi.slug}}.png?{{rand}}" style="max-width:100%;">
+			<img ng-src="https://david-dm.org/{{travi.slug}}.png?{{rand}}" style="max-width:100%;" />
+		</a>
+	    </span>
+	    <span>
+		<a ng-href="https://sourcegraph.com/github.com/{{travi.slug}}" target="_blank">
+		        <img ng-src="https://sourcegraph.com/api/repos/github.com/{{travi.slug}}/badges/status.png?{{rand}}" alt="status" />
 		</a>
 	    </span>
 	    <span>
 		<a ng-show="checkHeroku(travi)" ng-href="https://{{travi.slug.split('/')[1]}}.herokuapp.com" target="_blank">
-			<img ng-src="http://heroku-badge.heroku.com/?app={{travi.slug.split('/')[1]}}&{{rand}}" alt="heroku" style="max-width:100%;">
+			<img ng-src="http://heroku-badge.heroku.com/?app={{travi.slug.split('/')[1]}}&{{rand}}" alt="heroku" style="max-width:100%;" />
 		</a>
 	    </span>
 	    <span>
 		<a ng-href="https://gitter.im/{{travi.slug}}" target="_blank">
-			<img ng-src="https://badges.gitter.im/{{travi.slug}}.png" alt="gitter" style="max-width:100%;">
+			<img ng-src="https://badges.gitter.im/{{travi.slug}}.png?{{rand}}" alt="gitter" style="max-width:100%;" />
 		</a>
 	    </span>
         </li>
