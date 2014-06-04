@@ -24,6 +24,11 @@ module.exports = function (config) {
 	    'public/components/angular-resource/angular-resource.js',
 	    'public/components/angular-route/angular-route.js',
 	    'public/components/prettify/index.js',
+	    'public/components/zeroclipboard/ZeroClipboard.js',
+	    'public/components/ng-clip/dest/ng-clip.min.js',
+	    'public/components/fastclick/lib/fastclick.js',
+	    'public/components/overthrow/dist/overthrow.js',
+	    'public/components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js',
 	    // endbower
       	    'https://code.angularjs.org/1.1.4/angular-mocks.js',
             'public/js/*.js',

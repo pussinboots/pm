@@ -33,4 +33,17 @@ angular.module('services', ['ngResource'], function ($provide) {
             post: {method: 'POST', crypt: true}
         });
     });
+
+    $provide.factory('Project', function () {
+        var property;
+
+        return {
+            get: function () {
+                return property;
+            },
+            set: function(value) {
+                property = value;
+            }
+        };
+    });
 });

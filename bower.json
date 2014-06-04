@@ -26,6 +26,7 @@
     "angular-resource": "~1.2.16",
     "angular-route": "~1.2.16",
     "prettify": "*",
-    "ng-clip": "~0.1.3"
+    "ng-clip": "~0.1.3",
+    "mobile-angular-ui": "~1.1.0-beta.22"
   }
 }
