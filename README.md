@@ -1,9 +1,10 @@
-pm [Twitter](https://twitter.com/pussinbootsdev)
+pm
 ==================
 [![Build Status](https://travis-ci.org/pussinboots/pm.svg?branch=master)](https://travis-ci.org/pussinboots/pm)
 [![Coverage Status](https://img.shields.io/coveralls/pussinboots/pm.svg)](https://coveralls.io/r/pussinboots/pm?branch=master)
 [![Dependencies](https://david-dm.org/pussinboots/pm.png)](https://david-dm.org/pussinboots/pm)
 [![Heroku](http://heroku-badge.heroku.com/?app=poman)](https://poman.herokuapp.com)
+[![Twitter](http://www.mountcrow.de/blog/wp-content/uploads/2011/02/tweet-button.jpg)](https://twitter.com/pussinbootsdev)
 
 ##Description
 
