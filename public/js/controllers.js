@@ -13,38 +13,54 @@ function SettingsController($rootScope) {
 
 }
 
-function DetailsController($scope, Project, TravisBuilds, GitHub, GitHubCommits) {
+function DetailsController($scope, $http, Project, TravisCl, GitHubCl) {
 	$scope.project=Project.get();
 	console.log('selected project ' + Project.get());
 	$scope.builds = function(project) {
-		console.log('selected project overview' + project);
-		project.builds=TravisBuilds.get({slug:project.slug})
+		TravisCl.getBuilds({uri:project.slug+'/builds'}, function(data) {
+			project.builds=data.builds;
+		})
+	}
+	$scope.build = function(project) {
+		project.build=TravisCl.getBuild({uri:project.slug+'/builds/'+project.last_build_id})
+	}
+
+        $scope.setbuild = function(project, buildId) {
+		project.build=TravisCl.getBuild({uri:project.slug+'/builds/'+buildId})
+	}
+	$scope.log = function(job) {
+		$http({method: 'GET', url: 'https://api.travis-ci.org/jobs/'+job.id+'/log'}).
+		    success(function(data, status, headers, config) {
+			job.log=data;
+		    }).
+		    error(function(data, status, headers, config) {
+		    });
+		//job.log=TravisLog.getLog({logId:job.log_id})
 	}
 	$scope.readme = function(project) {
-		console.log('selected project overview' + project);
 		var res = project.slug.split("/");
-		GitHub.get({repo:res[0], project:res[1], file:'README.md'}, function(data){
+		GitHubCl.getFile({repo:res[0], project:res[1], uri:'contents/README.md'}, function(data){
 			project.readme=atob(data.content)
 		})
 	}
 	$scope.travisyml = function(project) {
-		console.log('selected project overview' + project);
 		var res = project.slug.split("/");
-		GitHub.get({repo:res[0], project:res[1], file:'.travis.yml'}, function(data){
+		GitHubCl.getFile({repo:res[0], project:res[1], uri:'contents/.travis.yml'}, function(data){
 			project.travisyml=atob(data.content)
 		})
 	}
 	$scope.commits = function(project) {
-		console.log('selected project overview' + project);
 		var res = project.slug.split("/");
-		project.commits=GitHubCommits.get({repo:res[0], project:res[1]})
+		project.commits=GitHubCl.getCommits({repo:res[0], project:res[1]})
 	}
+	$scope.build(Project.get());
 }
 
-function TravisController($scope, Travis, Project, $location) {
+function TravisController($scope, TravisCl, Project, $location) {
 	$scope.open=true;
 	$scope.load = function() {
-		$scope.travis=Travis.get({repo:$scope.config.repo})
+		$scope.travis=TravisCl.getProjects({uri:$scope.config.repo})
+		//$scope.travis=Travis.get({repo:$scope.config.repo})
 	}
 	$scope.checkHeroku = function(project) {
 		return project.description.indexOf('heroku')>=0

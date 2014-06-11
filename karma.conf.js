@@ -29,6 +29,7 @@ module.exports = function (config) {
 	    'public/components/fastclick/lib/fastclick.js',
 	    'public/components/overthrow/dist/overthrow.js',
 	    'public/components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js',
+	    'public/components/angularjs-decode-uri/public/js/lib/angularjs-decode-uri.js',
 	    // endbower
       	    'https://code.angularjs.org/1.1.4/angular-mocks.js',
             'public/js/*.js',

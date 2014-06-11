@@ -4,33 +4,18 @@
 
 angular.module('services', ['ngResource'], function ($provide) {
 
-    $provide.factory('Travis', function ($resource) {
-        return $resource('https://api.travis-ci.org/repos/:repo.json', {}, {
-            get: {method: 'GET', isArray:true}
+    $provide.factory('TravisCl', function ($resource) {
+        return $resource('https://api.travis-ci.org/repos/:uri',{}, {
+            getProjects: {method: 'GET', isArray:false, params:{uri:":repo"}, headers:{'Accept':'application/vnd.travis-ci.2+json'} },
+            getBuilds: {method: 'GET', isArray:false, params:{uri:":slug/builds"}, decodeuri: true, headers:{'Accept':'application/vnd.travis-ci.2+json'}},
+	    getBuild: {method: 'GET', isArray:false, params:{uri:":slug/build/:buildId"}, decodeuri: true, headers:{'Accept':'application/vnd.travis-ci.2+json'}}
         });
     });
 
-    $provide.factory('TravisBuilds', function ($resource) {
-        return $resource('https://api.travis-ci.org/repos/:slug/builds.json', {}, {
-            get: {method: 'GET', isArray:true}
-        });
-    });
-
-    $provide.factory('GitHubCommits', function ($resource) {
-        return $resource('https://api.github.com/repos/:repo/:project/commits', {}, {
-            get: {method: 'GET', isArray:true}
-        });
-    });
-
-    $provide.factory('GitHub', function ($resource) {
-        return $resource('https://api.github.com/repos/:repo/:project/contents/:file', {}, {
-            get: {method: 'GET'}
-        });
-    });
-
-    $provide.factory('Empty', function ($resource) {
-        return $resource('/assets/empty', {}, {
-            post: {method: 'POST', crypt: true}
+    $provide.factory('GitHubCl', function ($resource) {
+        return $resource('https://api.github.com/repos/:repo/:project/:uri', {}, {
+            getCommits: {method: 'GET', isArray:true, params:{uri:'commits'}, decodeuri: true},
+            getFile: {method: 'GET', isArray:false, params:{uri:'contents/:file'}, decodeuri: true}
         });
     });
 
