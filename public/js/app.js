@@ -73,7 +73,7 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 	}
 
 	$rootScope.receiveJob = function(data){
-		console.log(data);
+		//console.log(data);
 		if ($rootScope.travis.repos.length >= 20) {
 			$rootScope.travis.repos.pop();	
 		}
