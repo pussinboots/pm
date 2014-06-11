@@ -28,7 +28,8 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 		repo: 'pussinboots',
 		interval: 20000,
 		reloadActivated:0,
-		jobmonitoring:0
+		jobmonitoring:0,
+		jobFilter: 'pussinboots'
 	};
 	$rootScope.travis={repos:[]};
 	$rootScope.activateReload = function(reloadActivated) {
@@ -73,10 +74,17 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 	}
 
 	$rootScope.receiveJob = function(data){
-		//console.log(data);
+		console.log(data.repository_slug + ' == ' + $rootScope.config.jobFilter);
 		if ($rootScope.travis.repos.length >= 20) {
 			$rootScope.travis.repos.pop();	
 		}
-		$rootScope.travis.repos.unshift(data)
+		if(data.repository_slug.beginsWith($rootScope.config.jobFilter)) {
+			$rootScope.travis.repos.unshift(data)
+		}	
         }
 });
+
+String.prototype.beginsWith = function (string) {
+    if(typeof string == 'undefined') return true
+    return(this.indexOf(string) === 0);
+};
