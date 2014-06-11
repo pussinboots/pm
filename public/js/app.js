@@ -66,9 +66,6 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 		Pusher.subscribe('common','job:started', $rootScope.receiveJob);
 		Pusher.subscribe('common','job:finished', $rootScope.receiveJob);
 		Pusher.subscribe('common','job:requeued', $rootScope.receiveJob);
-		Pusher.subscribeAll('common', function(e,d) {
-			console.log(e + ' ' + JSON.stringify(d));
-		})
 	}
 	$rootScope.unsubcribesJob = function() {
 		console.log('unsubcribe to pusher');
