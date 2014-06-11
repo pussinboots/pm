@@ -46,6 +46,10 @@
   background-image : url('../../images/yellow.png');
 }
 
+.created .status {
+  background-image : url('../../images/yellow.png');
+}
+
 .failed .status {
   background-image : url('../../images/red.png');
 }

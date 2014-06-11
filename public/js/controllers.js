@@ -56,14 +56,15 @@ function DetailsController($scope, $http, Project, TravisCl, GitHubCl) {
 	$scope.build(Project.get());
 }
 
-function TravisController($scope, TravisCl, Project, $location) {
+function TravisController($scope, $timeout, TravisCl, Project, $location) {
 	$scope.open=true;
 	$scope.load = function() {
 		$scope.travis=TravisCl.getProjects({uri:$scope.config.repo})
-		//$scope.travis=Travis.get({repo:$scope.config.repo})
 	}
 	$scope.checkHeroku = function(project) {
-		return project.description.indexOf('heroku')>=0
+		if (typeof project.description!='undefined')
+			return project.description.indexOf('heroku')>=0
+		return false;
 	}
 	$scope.select = function(project) {
 		console.log('selected project overview' + project);
@@ -72,31 +73,19 @@ function TravisController($scope, TravisCl, Project, $location) {
 	}
 	$scope.load()
 }
-function ProjectController($scope, $timeout) {
-	$scope.getTextToCopy = function() {
-		return "ngClip is awesome!";
-	}
 
-	$scope.doSomething = function () {
-		console.log("NgClip...");
+function JobsController($scope, $rootScope, $timeout, TravisCl, Project, $location, Pusher) {
+	$scope.open=true;
+	$scope.travis=$rootScope.travis;
+	
+	$scope.select = function(job) {
+		console.log(job.repository_slug)
+		TravisCl.getProject({uri:job.repository_slug}, function(data) {
+			console.log('selected project overview' + data);
+			Project.set(data.repo);
+			$location.path('/details');
+		});
 	}
-	$scope.interval = 20000
-	$scope.reloadpic =function()
-	{
-		var timestamp = new Date().getTime();
-		var interval = $scope.interval
-		$scope.rand = timestamp;
-		console.log("reload build")
-		if (interval<1000) {
-			interval=1000
-		}
-		$timeout($scope.reloadpic, interval);
-	}
-	$scope.reloadpic()
-	$scope.tools=[
-	{name:'heroku', link:'//www.heroku.com', description:'Platform as a Servic', type:'paas', language:'Ruby, Java, Scala, D'}, {name:'david-dm', link:'//www.david-dm', description:'dependency analyzer and updater', type:'dependency', language:'nodejs'}, {name:'coveralls', link:'//coveralls.io/', description:'test coverage', type:'coverage', language:'Scala, NodeJS'},
-	{name:'heroku-badge', link:'//heroku-badge.herokuapp.com/projects.html', description:'check heroku project running', type:'deploy', language:'html'}, 
-	{name:'Version Eye', link:'//www.versioneye.com', language:'PHP, Ruby, Python, JavaScript, Clojure, Objective-C, Groovy', description:'dependency analyzer and updater', type:'dependency'},
-	{name:'travis', link:'//travis-ci.org', description:'free and easy to use build server for continous integration', type:'continous integration', language:'Ruby, NodeJs, Scala, Java, ...'},
-	{name:'gitter', link:'//gitter.im/', description:'free to use chat for open source projects', type:'chat', language:''}]
+	//$scope.load()
+	
 }
