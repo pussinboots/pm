@@ -13,13 +13,13 @@ demoApp.config(function ($routeProvider) {
 	.otherwise({ redirectTo: '/travis' });
 });
 
-demoApp.run(
-  function(PusherService) {
-   /* PusherService
+demoApp.config(['PusherServiceProvider',
+  function(PusherServiceProvider) {
+   PusherServiceProvider
       .setToken('5df8ac576dcccf4fd076')
-      .setOptions({});*/
+      .setOptions({encrypted:false});
   }
-);
+]);
 
 
 demoApp.run(function ($rootScope, $timeout, Pusher) {
@@ -64,7 +64,7 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 	}
 	$rootScope.activateJobFilter= function(jobFilter) {
 		$rootScope.config.jobFilter=jobFilter;
-		$rootScope.travis.repos.length=0
+		$rootScope.travis.repos.length=0;
 		$rootScope.$apply();
 	}
 	$rootScope.subcribesJob = function() {
@@ -88,10 +88,9 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
         }
 	function filterJob(data) {
 		if($rootScope.config.jobFilter) {
-		console.log(data.repository_slug + ' == ' + $rootScope.config.repo);
 			return data.repository_slug.beginsWith($rootScope.config.repo)
-}
-		else return true;
+		}
+		return true;
 	}
 });
 
