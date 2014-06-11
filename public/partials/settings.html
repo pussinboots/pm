@@ -12,6 +12,7 @@
   {{rand}}
   <switch ng-change="activateReload(config.reloadActivated)" bs-form-control label="Refresh" ng-model="config.reloadActivated" label-class="col-xs-3 col-sm-2 col-lg-1"></switch>
   <switch ng-change="activateSubcribe(config.jobmonitoring)" bs-form-control label="Job Push" ng-model="config.jobmonitoring" label-class="col-xs-3 col-sm-2 col-lg-1"></switch>
+  <switch ng-change="activateJobFilter(config.jobfilter)" bs-form-control label="Job Filter" ng-model="config.jobfilter" label-class="col-xs-3 col-sm-2 col-lg-1"></switch>
   <input bs-form-control label="Interval (milis)" type="text" ng-model="config.interval" />
   <input bs-form-control label="Github Repo" type="text" ng-model="config.repo" />
 </div>

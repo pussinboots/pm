@@ -29,7 +29,7 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 		interval: 20000,
 		reloadActivated:0,
 		jobmonitoring:0,
-		jobFilter: 'pussinboots'
+		jobfilter: 0
 	};
 	$rootScope.travis={repos:[]};
 	$rootScope.activateReload = function(reloadActivated) {
@@ -62,6 +62,11 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 			$rootScope.unsubcribesJob();
 		}
 	}
+	$rootScope.activateJobFilter= function(jobFilter) {
+		$rootScope.config.jobFilter=jobFilter;
+		$rootScope.travis.repos.length=0
+		$rootScope.$apply();
+	}
 	$rootScope.subcribesJob = function() {
 		console.log('subcribe to pusher');
 		Pusher.subscribe('common','job:started', $rootScope.receiveJob);
@@ -74,14 +79,20 @@ demoApp.run(function ($rootScope, $timeout, Pusher) {
 	}
 
 	$rootScope.receiveJob = function(data){
-		console.log(data.repository_slug + ' == ' + $rootScope.config.jobFilter);
 		if ($rootScope.travis.repos.length >= 20) {
 			$rootScope.travis.repos.pop();	
 		}
-		if(data.repository_slug.beginsWith($rootScope.config.jobFilter)) {
+		if(filterJob(data)) {
 			$rootScope.travis.repos.unshift(data)
 		}	
         }
+	function filterJob(data) {
+		if($rootScope.config.jobFilter) {
+		console.log(data.repository_slug + ' == ' + $rootScope.config.repo);
+			return data.repository_slug.beginsWith($rootScope.config.repo)
+}
+		else return true;
+	}
 });
 
 String.prototype.beginsWith = function (string) {
