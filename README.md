@@ -29,6 +29,8 @@ There is also a second page [New Project](http://poman.herokuapp.com/new) which 
  * support other providers like (coveralls, ...) for the project setup
 
 ##Features
+* job filter to display only jobs for the configurate github repo (settings -> job filter)
+* realtime update of created and finished jobs at travis with pusher (settings -> job push)
 * project overview based travis registered projects under a configurable repo
 * project overview contains badge of Travis Ci, Coveralls, David DM, Sourcegraph, [Heroku](https://github.com/pussinboots/heroku-badge), Gitter
 * project overview configurable refresh period (min 1 second, default 20 seconds) that fetch the new badges be careful with that can be a lot of load for the badges provider
